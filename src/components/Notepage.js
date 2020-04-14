@@ -1,12 +1,8 @@
-import React from 'react';
+import React, { Components } from 'react';
 import { withRouter, Route, Switch } from 'react-router-dom';
-import Homepage from './components/Homepage';
-import Folderpage from './components/Folderpage';
-import Notepage from './components/Notepage';
-import NotFound from './components/NotFound';
-import './App.css';
+import NoteContainer from './NoteContainer';
 
-export default class App extends React.Component {
+export default class Notepage extends React.Component {
   state = {
     folders: [
       {
@@ -139,40 +135,9 @@ export default class App extends React.Component {
   };
   render() {
     return (
-      <div className="App">
-        <header>
-          <h1>Notefull</h1>
-        </header>
-        <main>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={({ match, history, location }) => (
-                <Homepage
-                  folders={this.state.folders}
-                  notes={this.state.notes}
-                />
-              )}
-            />
-            <Route
-              path="/folder"
-              render={({ match, history, location }) => (
-                <Folderpage
-                  folders={this.state.folders}
-                  notes={this.state.notes}
-                />
-              )}
-            />
-            <Route
-              path="/note"
-              render={({ match, history, location }) => (
-                <Notepage notes={this.state.notes} />
-              )}
-            />
-            <Route component={NotFound} />
-          </Switch>
-        </main>
+      <div>
+        <Route path="/note/:noteid" />
+        <NoteContainer notes={this.state.notes} />
       </div>
     );
   }
