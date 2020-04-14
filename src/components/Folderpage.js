@@ -8,9 +8,13 @@ export default class Folderpage extends React.Component {
   render() {
     return (
       <div>
-        <Route path="/folder/:folderid" />
-        <FolderContainer folders={this.props.folders} />
-        <NoteContainer notes={this.props.notes} />
+        <ul>
+          <FolderContainer folders={this.props.folders} />
+        </ul>
+        <ul>
+          <NoteContainer notes={this.props.notes} />
+        </ul>
+        
       </div>
     );
   }

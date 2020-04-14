@@ -156,19 +156,28 @@ export default class App extends React.Component {
               )}
             />
             <Route
-              path="/folder"
-              render={({ match, history, location }) => (
-                <Folderpage
-                  folders={this.state.folders}
-                  notes={this.state.notes}
-                />
-              )}
+              path="/folder/:folderId"
+              render={({ match, history, location }) => {
+                const notes = this.state.notes.filter(note => {
+                  return note.folderId === match.params.folderId
+                })
+                return(
+                  <Folderpage
+                    folders={this.state.folders}
+                    notes={notes}
+                  />
+                )
+
+              }}
             />
             <Route
-              path="/note"
-              render={({ match, history, location }) => (
-                <Notepage notes={this.state.notes} />
-              )}
+              path="/note/:noteId"
+              render={({ match, history, location }) => {
+                const note = this.state.notes.filter(n => {
+                  return n.id === match.params.noteId
+                })
+                return(<Notepage note={note} />)
+              }}
             />
             <Route component={NotFound} />
           </Switch>

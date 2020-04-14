@@ -9,6 +9,7 @@ export default class NoteContainer extends React.Component {
         {this.props.notes.map(note =>
           <Note 
             key={note.id}
+            id={note.id}
             noteName={note.name}
             dateModified={note.modified}
           />
